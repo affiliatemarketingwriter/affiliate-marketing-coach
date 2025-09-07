@@ -1,126 +1,389 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barry Affiliate Marketing</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Living Faith Church — Auchi</title>
+  <meta name="description" content="Living Faith Church, Auchi — service times, events, testimonies, live sermons, gallery and contact." />
+  <meta name="theme-color" content="#800000" />
+  <!-- Font (optional) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    :root{
+      --brand: #800000;
+      --accent: #ffcc00;
+      --bg: #fbfbfb;
+      --card: #fff;
+      --text: #222;
+      --muted: #666;
+      --radius: 12px;
+      --max-width: 1100px;
+      --focus: 3px rgba(255,204,0,0.18);
     }
-    header {
-      background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-      color: white;
-      padding: 120px 20px;
-      text-align: center;
-      position: relative;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--text); background:var(--bg);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
-    header::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
+    a{color:inherit}
+    /* Skip link */
+    .skip-link{position:absolute; left:-999px; top:auto; background:#000; color:#fff; padding:8px 12px; border-radius:6px; z-index:999;}
+    .skip-link:focus{left:10px; top:10px}
+    /* Header & Nav */
+    header.site-header{position:sticky; top:0; z-index:999; background:linear-gradient(90deg,var(--brand), #a83232); box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+    .nav-inner{max-width:var(--max-width); margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:10px 18px;}
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:#fff;}
+    .brand img{height:44px; width:44px; object-fit:contain; background:#fff; border-radius:8px; padding:3px}
+    .brand h1{font-size:1.05rem; margin:0; font-weight:700}
+    nav.primary{display:flex; gap:12px; align-items:center;}
+    nav.primary a{color:#fff; text-decoration:none; font-weight:600; padding:8px 10px; border-radius:8px}
+    nav.primary a:hover, nav.primary a.active{background:rgba(255,255,255,0.06); color:var(--accent)}
+    .menu-toggle{display:none; background:transparent; border:0; color:#fff; font-size:1.35rem; padding:8px}
+    .nav-mobile{display:none}
+
+    /* Hero */
+    .hero{
+      background:linear-gradient(rgba(0,0,0,0.38), rgba(0,0,0,0.38)), url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1600&q=80');
+      background-size:cover; background-position:center; min-height:48vh;
+      display:flex; align-items:center; justify-content:center; color:#fff; text-align:center; padding:44px 18px;
     }
-    header h1, header p, header a {
-      position: relative;
-      z-index: 1;
-    }
-    header h1 {
-      font-size: 3rem;
-      font-weight: bold;
-    }
-    header p {
-      font-size: 1.2rem;
-      margin-top: 10px;
-    }
-    .btn-custom {
-      background-color: #00cc99;
-      color: white;
-      padding: 12px 25px;
-      margin: 10px;
-      border-radius: 8px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: 0.3s;
-    }
-    .btn-custom:hover {
-      background-color: #009973;
-      color: #fff;
-    }
-    footer {
-      background: #222;
-      color: #aaa;
-      padding: 20px;
-      text-align: center;
+    .hero h2{font-size:2.25rem; margin:0 0 8px}
+    .hero p{margin:0 0 18px; font-weight:600}
+    .service-chips{display:flex; gap:10px; flex-wrap:wrap; justify-content:center}
+    .chip{background:rgba(255,255,255,0.12); padding:10px 14px; border-radius:999px; font-weight:600; border:1px solid rgba(255,255,255,0.06)}
+
+    /* Main */
+    main{max-width:var(--max-width); margin:26px auto; padding:0 18px 48px}
+    .section-title{color:var(--brand); text-align:center; margin:6px 0 24px; font-size:1.6rem}
+    .cards.grid{display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+    .card{background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:0 6px 18px rgba(11,11,11,0.06); display:flex; flex-direction:column; gap:8px}
+    .card h4{margin:0;color:var(--brand)}
+    .card p{margin:0;color:var(--muted);line-height:1.45}
+    .btn{display:inline-block;background:var(--brand);color:#fff;padding:10px 12px;border-radius:8px;text-decoration:none;font-weight:700;border:0;cursor:pointer}
+    .btn.secondary{background:transparent;color:var(--brand);border:1px solid var(--brand)}
+    /* Video */
+    .video-wrap{display:flex; justify-content:center; padding:8px}
+    .embed{width:100%; max-width:900px; aspect-ratio:16/9; background:#000; border-radius:10px; overflow:hidden; box-shadow:0 8px 28px rgba(0,0,0,0.12)}
+    .embed iframe{width:100%; height:100%; border:0; display:block}
+    .video-controls{display:flex; gap:8px; justify-content:center; margin-top:10px}
+
+    /* Gallery */
+    .gallery{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); align-items:stretch}
+    .gallery img{width:100%; height:220px; object-fit:cover; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.08); transition:transform .25s}
+    .gallery img:hover{transform:scale(1.03)}
+
+    /* Contact */
+    .contact-grid{display:grid; grid-template-columns:1fr 320px; gap:14px}
+    input, textarea{width:100%; padding:10px; border-radius:8px; border:1px solid #e6e6e6; font-family:inherit}
+    label{font-size:.92rem; color:var(--muted); margin-bottom:4px; display:block}
+
+    /* Footer */
+    footer.site-footer{padding:28px 18px;background:#111;color:#ddd;text-align:center;margin-top:28px}
+    .socials{display:flex; gap:12px; justify-content:center; margin-top:10px}
+    .socials a{color:var(--accent); text-decoration:none; font-weight:700}
+
+    /* focus states */
+    a:focus, button:focus, input:focus, textarea:focus{outline: none; box-shadow: 0 0 0 4px var(--focus); border-radius:8px}
+
+    /* mobile */
+    @media (max-width:880px){
+      nav.primary{display:none}
+      .menu-toggle{display:block}
+      .nav-mobile{display:block; position:absolute; left:0; right:0; top:64px; background:linear-gradient(90deg,var(--brand),#a83232); padding:12px; display:none}
+      .nav-mobile a{display:block; color:#fff; padding:10px 12px; text-decoration:none}
+      .contact-grid{grid-template-columns:1fr}
+      .hero{min-height:56vh}
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- Hero Section -->
-  <header>
-    <h1>Barry's Affiliate Marketing Hub 🚀</h1>
-    <p>Helping you turn clicks into commissions with proven strategies</p>
-    <a href="https://selar.com/9645b5474g" class="btn-custom"><i class="bi bi-cart"></i> Visit My Selar Store</a>
-    <a href="https://chat.whatsapp.com/GlhbK8RpE1NEc7ew1wtw01" class="btn-custom"><i class="bi bi-whatsapp"></i> Join My WhatsApp Group</a>
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-inner">
+      <a class="brand" href="#home" aria-label="Living Faith Church Auchi home">
+        <!-- Winners Worldwide logo (replace with your own if you prefer) -->
+        <img src="https://www.kindpng.com/picc/m/188-1889012_winners-chapel-logo-png-transparent-png.png" alt="Winners Chapel logo" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h1 style="color:#fff; margin:0;">Living Faith Church</h1>
+          <div style="color:rgba(255,255,255,0.92); font-size:.78rem; margin-top:4px">Auchi — Empowered by the Word</div>
+        </div>
+      </a>
+
+      <nav class="primary" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#events">Events</a>
+        <a href="#news">News</a>
+        <a href="#testimonies">Testimonies</a>
+        <a href="#live">Live</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" title="Open menu">☰</button>
+    </div>
+
+    <nav id="mobile-nav" class="nav-mobile" aria-hidden="true">
+      <a href="#home">Home</a>
+      <a href="#events">Events</a>
+      <a href="#news">News</a>
+      <a href="#testimonies">Testimonies</a>
+      <a href="#live">Live</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <!-- About Section -->
-  <section class="container my-5">
-    <h2 class="text-center mb-4">👋 About Me</h2>
-    <p class="text-center">
-      Hi, I’m <strong>Barry</strong>. I’m an affiliate marketing coach helping beginners and entrepreneurs
-      build successful online income streams. I provide step-by-step guidance, resources,
-      and mentorship to help you succeed in the world of affiliate marketing.
-    </p>
-  </section>
-
-  <!-- Services Section -->
-  <section class="container my-5">
-    <h2 class="text-center mb-4">🔥 What You’ll Get</h2>
-    <div class="row text-center">
-      <div class="col-md-4">
-        <h4>📘 Guides & Training</h4>
-        <p>Step-by-step tutorials to help you start your affiliate journey.</p>
-      </div>
-      <div class="col-md-4">
-        <h4>💬 Mentorship</h4>
-        <p>Exclusive access to my WhatsApp mentorship community.</p>
-      </div>
-      <div class="col-md-4">
-        <h4>📈 Proven Strategies</h4>
-        <p>High-converting techniques that bring real results.</p>
+  <!-- Hero -->
+  <section id="home" class="hero" role="region" aria-label="Welcome section">
+    <div class="wrap">
+      <h2>Welcome to Living Faith Church — Auchi</h2>
+      <p>Come worship with us every Sunday — 7:00am & 9:00am • Wednesdays — 5:00pm</p>
+      <div class="service-chips" aria-hidden="true">
+        <div class="chip">Sunday — 7:00am</div>
+        <div class="chip">Sunday — 9:00am</div>
+        <div class="chip">Wednesday — 5:00pm</div>
       </div>
     </div>
   </section>
 
-  <!-- Call To Action -->
-  <section class="text-center my-5">
-    <h2>✅ Start Your Journey Today</h2>
-    <p>Click below to get started and grow your online income.</p>
-    <a href="https://selar.com/9645b5474g" class="btn-custom"><i class="bi bi-cart-check"></i> Visit My Store</a>
-    <a href="https://chat.whatsapp.com/GlhbK8RpE1NEc7ew1wtw01" class="btn-custom"><i class="bi bi-whatsapp"></i> Join WhatsApp Group</a>
-  </section>
+  <main id="main" role="main">
+    <!-- Events -->
+    <section id="events" aria-labelledby="events-title">
+      <h3 id="events-title" class="section-title">Upcoming Events</h3>
+      <div class="cards grid">
+        <article class="card" aria-labelledby="evt1">
+          <h4 id="evt1">Encounter with Destiny</h4>
+          <p><strong>Date:</strong> Sunday, 7 September 2025 — First Service 6:30 AM • Second Service 9:00 AM</p>
+        </article>
+        <article class="card" aria-labelledby="evt2">
+          <h4 id="evt2">Winners Satellite Fellowship</h4>
+          <p><strong>Date:</strong> Saturday, 6 September 2025 — Local fellowship meetings.</p>
+        </article>
+      </div>
+    </section>
 
-  <!-- Contact Section -->
-  <section class="container my-5">
-    <h2 class="text-center mb-4">📞 Contact Me</h2>
-    <p class="text-center">
-      Have questions? Let’s connect directly.  
-      <br><i class="bi bi-telephone"></i> <strong>Phone:</strong> +2349074610304  
-      <br><i class="bi bi-envelope"></i> <strong>Email:</strong> barryaffiliate@gmail.com
-    </p>
-  </section>
+    <!-- News -->
+    <section id="news" aria-labelledby="news-title" style="margin-top:28px">
+      <h3 id="news-title" class="section-title">Latest News</h3>
+      <div class="cards grid">
+        <article class="card">
+          <h4>Weekly Bulletin — 31 Aug 2025</h4>
+          <p><a class="btn secondary" href="#" aria-label="Download weekly bulletin">Download Bulletin</a></p>
+        </article>
+        <article class="card">
+          <h4>Books of the Month — August</h4>
+          <p>Recommended readings to grow spiritually this month.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Testimonies -->
+    <section id="testimonies" aria-labelledby="test-title" style="margin-top:28px">
+      <h3 id="test-title" class="section-title">Amazing Testimonies</h3>
+      <div class="cards grid">
+        <article class="card"><h4>Charles Ekeh</h4><p>“Miracle Alert — instant breakthrough during crusade prayer.”</p></article>
+        <article class="card"><h4>Oleh Chioma</h4><p>“Received a job after months of searching following prophetic declaration.”</p></article>
+        <article class="card"><h4>Ezinne Simon</h4><p>“Healed of a long-term condition after prayer and counsel.”</p></article>
+      </div>
+    </section>
+
+    <!-- Live (shows recorded sermon by default; button can switch to Live stream) -->
+    <section id="live" aria-labelledby="live-title" style="margin-top:28px">
+      <h3 id="live-title" class="section-title">Watch Sermons</h3>
+
+      <!-- Controls -->
+      <div class="video-controls" role="toolbar" aria-label="Video controls">
+        <button id="showRecorded" class="btn" aria-pressed="true">Recent Sermon</button>
+        <button id="showLive" class="btn secondary" aria-pressed="false">Try Live Stream</button>
+      </div>
+
+      <div class="video-wrap" style="margin-top:12px">
+        <div class="embed" role="region" aria-label="Sermon video player">
+          <!-- iframe src is set by JS for reliable default/fallback behavior -->
+          <iframe id="videoFrame" src="" allowfullscreen title="Sermon video"></iframe>
+        </div>
+      </div>
+
+      <p style="text-align:center;color:var(--muted);margin-top:10px">
+        If the live stream is not active, the page will show a recent recorded sermon by default.
+      </p>
+    </section>
+
+    <!-- Gallery (stock + some Warri placeholders) -->
+    <section id="gallery" aria-labelledby="gallery-title" style="margin-top:28px">
+      <h3 id="gallery-title" class="section-title">Photo Gallery</h3>
+      <div class="gallery" aria-live="polite">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?auto=format&fit=crop&w=1000&q=60" alt="Worship atmosphere" onerror="imgFallback(this)">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1508780709619-79562169bc64?auto=format&fit=crop&w=1000&q=60" alt="Congregation" onerror="imgFallback(this)">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1000&q=60" alt="Cross and light" onerror="imgFallback(this)">
+        <img loading="lazy" src="https://www.winnerschapelwarri.org/dynamic-images/uploads/images/343044166868775835.jpg?h=600&w=800" alt="Winners event placeholder" onerror="imgFallback(this)">
+        <img loading="lazy" src="https://www.winnerschapelwarri.org/dynamic-images/uploads/images/722337563715437100.jpg?h=600&w=800" alt="Winners service placeholder" onerror="imgFallback(this)">
+      </div>
+      <p style="color:var(--muted); text-align:center; margin-top:10px">Placeholders — replace with Auchi photos when ready.</p>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" aria-labelledby="contact-title" style="margin-top:28px">
+      <h3 id="contact-title" class="section-title">Contact & Location</h3>
+      <div class="contact-grid" style="margin-top:8px">
+        <div class="card">
+          <p><strong>Address:</strong> Opposite Abundance School, Auchi, Edo State</p>
+          <p><strong>Tel:</strong> <a href="tel:+2348032349552">+234 803 234 9552</a>, <a href="tel:+2348034741562">+234 803 474 1562</a></p>
+          <p><strong>Email:</strong> <a href="mailto:LivingFaithchurchsouthibie@gmail.com">LivingFaithchurchsouthibie@gmail.com</a></p>
+          <p style="margin-top:12px">
+            <a class="btn" href="mailto:LivingFaithchurchsouthibie@gmail.com?subject=Enquiry%20from%20website">Email Us</a>
+            <a class="btn secondary" href="tel:+2348032349552">Call Now</a>
+          </p>
+        </div>
+
+        <div class="card">
+          <form id="contactForm">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required>
+            <label for="message" style="margin-top:8px">Message</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            <div style="margin-top:10px">
+              <button class="btn" type="submit">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
-  <footer>
-    <p>© 2025 Barry Affiliate Marketing | All Rights Reserved</p>
+  <footer class="site-footer" role="contentinfo">
+    <div style="max-width:var(--max-width); margin:0 auto">
+      <div style="font-weight:700; color:#fff">Living Faith Church — Auchi</div>
+      <div style="color:var(--muted); margin-top:6px">Opposite Abundance School, Auchi, Edo State</div>
+      <div class="socials">
+        <a href="#" target="_blank" rel="noopener">Facebook</a>
+        <a href="#" target="_blank" rel="noopener">YouTube</a>
+        <a href="#" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
   </footer>
 
+  <script>
+    /* --- Helpers & settings --- */
+    // Default recorded sermon video ID (used by default so player always shows something)
+    const RECORDED_VIDEO_ID = 'm9Kb4HT_6eY'; // supplied earlier in conversation (recorded sermon)
+    // Live stream placeholder — replace YOUR_CHANNEL_ID with your YouTube channel ID to try live streaming
+    const LIVE_IFRAME_URL = (channelId) => `https://www.youtube.com/embed/live_stream?channel=${channelId}`;
+
+    // Elements
+    const videoFrame = document.getElementById('videoFrame');
+    const showRecordedBtn = document.getElementById('showRecorded');
+    const showLiveBtn = document.getElementById('showLive');
+
+    // Set recorded sermon by default
+    function setRecorded() {
+      videoFrame.src = `https://www.youtube.com/embed/${RECORDED_VIDEO_ID}`;
+      showRecordedBtn.setAttribute('aria-pressed','true');
+      showLiveBtn.setAttribute('aria-pressed','false');
+      showRecordedBtn.classList.add('btn');
+      showLiveBtn.classList.remove('btn');
+      showLiveBtn.classList.add('btn', 'secondary');
+    }
+    // Try to set live stream (requires replacing CHANNEL_ID below)
+    function setLive() {
+      const CHANNEL_ID = 'YOUR_CHANNEL_ID'; // <-- REPLACE this (e.g. UCxxxxx) with your YouTube channel ID for live
+      if (!CHANNEL_ID || CHANNEL_ID === 'YOUR_CHANNEL_ID') {
+        alert('To show live stream, replace YOUR_CHANNEL_ID in the HTML/JS with your YouTube channel ID. The page will use the recent sermon by default.');
+        return;
+      }
+      videoFrame.src = LIVE_IFRAME_URL(CHANNEL_ID);
+      showLiveBtn.setAttribute('aria-pressed','true');
+      showRecordedBtn.setAttribute('aria-pressed','false');
+      showLiveBtn.classList.remove('btn', 'secondary'); showLiveBtn.classList.add('btn');
+      showRecordedBtn.classList.remove('btn'); showRecordedBtn.classList.add('btn', 'secondary');
+    }
+
+    // Initialize default
+    setRecorded();
+
+    // Button events
+    showRecordedBtn.addEventListener('click', setRecorded);
+    showLiveBtn.addEventListener('click', setLive);
+
+    // mobile nav toggle + accessibility
+    const toggle = document.querySelector('.menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    toggle?.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      if (mobileNav.style.display === 'block') {
+        mobileNav.style.display = 'none';
+        mobileNav.setAttribute('aria-hidden','true');
+      } else {
+        mobileNav.style.display = 'block';
+        mobileNav.setAttribute('aria-hidden','false');
+        // focus first link for keyboard users
+        const first = mobileNav.querySelector('a');
+        first?.focus();
+      }
+    });
+
+    // Close mobile nav with Esc
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileNav && mobileNav.style.display === 'block') {
+        mobileNav.style.display = 'none';
+        toggle.setAttribute('aria-expanded','false');
+        mobileNav.setAttribute('aria-hidden','true');
+        toggle.focus();
+      }
+    });
+
+    // Close mobile nav after clicking a link
+    document.querySelectorAll('.nav-mobile a').forEach(a => a.addEventListener('click', () => {
+      mobileNav.style.display = 'none';
+      toggle.setAttribute('aria-expanded','false');
+      mobileNav.setAttribute('aria-hidden','true');
+    }));
+
+    // Active nav highlighting via IntersectionObserver
+    const sections = document.querySelectorAll('main section, .hero');
+    const navLinks = document.querySelectorAll('nav.primary a');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+        }
+      });
+    }, { threshold: 0.48 });
+    sections.forEach(s => observer.observe(s));
+
+    // contact form uses mailto fallback
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = encodeURIComponent(form.name.value.trim());
+        const message = encodeURIComponent(form.message.value.trim());
+        const subject = encodeURIComponent('Website enquiry — ' + (name || 'Visitor'));
+        const body = encodeURIComponent(`Name: ${name}\n\nMessage:\n${message}`);
+        window.location.href = `mailto:LivingFaithchurchsouthibie@gmail.com?subject=${subject}&body=${body}`;
+      });
+    }
+
+    // Image fallback — replaces broken images with neutral SVG placeholder
+    function imgFallback(img) {
+      img.onerror = null;
+      img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><rect width="100%" height="100%" fill="#f3f3f3"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#999" font-family="Arial" font-size="22">Image not available</text></svg>'
+      );
+    }
+    // expose to inline onerror attributes
+    window.imgFallback = imgFallback;
+
+    // If JS disabled or iframe blocked, user can still click the channel link below:
+    // (No further action required here.)
+  </script>
 </body>
 </html>
